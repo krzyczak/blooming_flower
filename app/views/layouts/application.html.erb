@@ -11,6 +11,15 @@
   </head>
 
   <body>
+    <code>
+      request.remote_ip: <%= request.remote_ip %>
+      request.ip: <%= request.ip %>
+    </code>
+
+    <br/>
+    <hr/>
+    <br/>
+
     <%= yield %>
   </body>
 </html>

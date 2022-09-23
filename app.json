@@ -1,0 +1,9 @@
+{
+  "environments": {
+    "review": {
+      "scripts": {
+        "postdeploy": "rails db:migrate && rake db:seed"
+      }
+    }
+  }
+}

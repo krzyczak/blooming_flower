@@ -1,0 +1,14 @@
+{
+  "environments": {
+    "review": {
+      "buildpacks": [
+        {
+          "url": "https://github.com/heroku/heroku-buildpack-cli"
+        },
+      ],
+      "scripts": {
+        "postdeploy": "heroku pg:copy {STAGING_APP_NAME}::DATABASE DATABASE --app $HEROKU_APP_NAME --confirm $HEROKU_APP_NAME  && sleep 1s && rails db:migrate"
+      }
+    }
+  }
+}

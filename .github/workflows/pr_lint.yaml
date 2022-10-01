@@ -1,0 +1,40 @@
+name: Lint Commit Messages
+on: [pull_request]
+
+# on:
+#   pull_request:
+
+# on:
+#   push:
+#     branches: [ "master" ]
+#   pull_request:
+#     branches: [ "master" ]
+
+
+
+jobs:
+  run-commitlint-on-pr:
+    name: "Validate commit messages"
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - run: git remote -v
+      - run: printenv
+
+      - run: echo ${{ github.event }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Validate all commits from PR
+        run: npx commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
